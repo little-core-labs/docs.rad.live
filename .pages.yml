@@ -17,8 +17,11 @@ content:
     fields:
       - name: layout
         label: Page layout
-        type: string
-        default: default
+        type: select
+        options:
+          values: [ default, home, page, post, about ]
+          placeholder: Choose page layout
+          default: default
       - name: title
         label: Page title
         type: string
