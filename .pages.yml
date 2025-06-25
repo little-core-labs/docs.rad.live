@@ -25,6 +25,7 @@ content:
         type: number
       - name: body
         label: Body
+        type: rich-text
   # define the main site homepage
   - name: homepage
     label: Homepage
