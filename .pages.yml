@@ -15,6 +15,10 @@ content:
     type: file
     path: index.md
     fields:
+      - name: layout
+        label: Page layout
+        type: string
+        default: default
       - name: title
         label: Page title
         type: string
