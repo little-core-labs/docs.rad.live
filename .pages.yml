@@ -10,17 +10,25 @@ media:
     input: assets/videos
     output: /assets/videos
 content:
+  # define individual documentation pages
+  - name: docs
+    label: Documentation
+    type: collection
+    path: src/docs
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: order, label: Order, type: number }
+      - { name: body, label: Body, type: rich-text }
+  # define the main site homepage
   - name: homepage
     label: Homepage
     type: file
     path: index.md
     fields:
-      - name: title
-        label: Page Title
-        type: string
-      - name: body
-        label: Page Body
-        type: rich-text
+      - { name: layout, label: Page Layout, type: string, default: default }
+      - { name: title, label: Page Title, type: string, required: true }
+      - { name: body, label: Page Body, type: rich-text, required: true }
+  # define the main site configuration
   - name: config
     label: Site Config
     path: _config.yml
