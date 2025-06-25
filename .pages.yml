@@ -15,8 +15,8 @@ content:
     type: file
     path: index.md
     fields:
-      - component:
-        name: layout
+      - name: layout
+        component: layout
       - name: title
         label: Page title
         type: string
@@ -53,7 +53,7 @@ content:
         description: Image used in the preview on social networks
 components:
   layout:
-    label: Page layout
+    label: layout
     type: object
     fields:
       - name: layout
