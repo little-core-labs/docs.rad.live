@@ -26,4 +26,4 @@ In these docs, you will learn how to:
 *   Add Content to Special Features like Sony Bravia Artwork
     
 
-<iframe src='[//embed.rad.live?id=9d51dc65-d1c9-44c0-a217-de88be51bfb6&type=feature](https://embed.rad.live?id=9d51dc65-d1c9-44c0-a217-de88be51bfb6&type=feature)' width='640px' height='360px' allow="autoplay; fullscreen; picture-in-picture" allowfullscreen class="radtv-player"></iframe>
+<iframe src='//embed.rad.live?id=9d51dc65-d1c9-44c0-a217-de88be51bfb6&type=feature' width='640px' height='360px' allow="autoplay; fullscreen; picture-in-picture" allowfullscreen class="radtv-player"></iframe>
