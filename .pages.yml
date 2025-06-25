@@ -16,18 +16,33 @@ content:
     type: collection
     path: src/docs
     fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: order, label: Order, type: number }
-      - { name: body, label: Body, type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: order
+        label: Order
+        type: number
+      - name: body
+        label: Body
   # define the main site homepage
   - name: homepage
     label: Homepage
     type: file
     path: index.md
     fields:
-      - { name: layout, label: Page Layout, type: string, default: default }
-      - { name: title, label: Page Title, type: string, required: true }
-      - { name: body, label: Page Body, type: rich-text, required: true }
+      - name: layout
+        label: Page Layout
+        type: string
+        default: default
+      - name: title
+        label: Page Title
+        type: string
+        required: true
+      - name: body
+        label: Page Body
+        type: rich-text
+        required: true
   # define the main site configuration
   - name: config
     label: Site Config
