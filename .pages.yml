@@ -15,15 +15,6 @@ content:
     type: file
     path: index.md
     fields:
-      - name: layout
-        label: Page layout
-        type: select
-        description: Will default to 'default' if none selected
-        required: true
-        options:
-          values: [ default, home, page, post, about ]
-          placeholder: Choose page layout
-          default: default
       - name: title
         label: Page Title
         type: string
