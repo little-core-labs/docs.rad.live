@@ -16,12 +16,19 @@ content:
     path: index.md
     fields:
       - name: layout
-        component: layout
+        label: Page layout
+        type: select
+        description: Will default to 'default' if none selected
+        required: true
+        options:
+          values: [ default, home, page, post, about ]
+          placeholder: Choose page layout
+          default: default
       - name: title
-        label: Page title
+        label: Page Title
         type: string
       - name: body
-        label: Page body
+        label: Page Body
         type: rich-text
   - name: config
     label: Site Config
@@ -29,10 +36,10 @@ content:
     type: file
     fields:
       - name: title
-        label: Website title
+        label: Website Title
         type: string
       - name: description
-        label: Website description
+        label: Website Description
         type: string
         description: Will be provided for any page with no description.
       - name: url
@@ -48,20 +55,6 @@ content:
         type: image
         description: Logo used in the header of the site
       - name: cover
-        label: SEO preview
+        label: SEO Preview
         type: image
         description: Image used in the preview on social networks
-components:
-  layout:
-    label: layout
-    type: object
-    fields:
-      - name: layout
-        label: Page layout
-        type: select
-        description: Will default to 'default' if none selected
-        required: true
-        options:
-          values: [ default, home, page, post, about ]
-          placeholder: Choose page layout
-          default: default
