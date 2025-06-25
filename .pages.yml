@@ -11,7 +11,7 @@ media:
     output: /assets/videos
 content:
     - name: config
-      label: Jekyll config
+      label: Site Config
       path: _config.yml
       type: file
       fields:
@@ -21,11 +21,16 @@ content:
         - name: description
           label: Website description
           type: string
-          description: Will be provused for any page with no description.
+          description: Will be provided for any page with no description.
         - name: url
           label: Website URL
           type: string
           pattern: ^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$
+        - name: remote_theme
+          label: Theme
+          type: string
+          description: The theme to use for the site.
+          default: just-the-docs/just-the-docs
         - name: cover
           label: Preview image
           type: image
