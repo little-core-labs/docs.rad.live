@@ -59,6 +59,7 @@ components:
       - name: layout
         label: Page layout
         type: select
+        description: Will default to 'default' if none selected
         required: true
         options:
           values: [ default, home, page, post, about ]
