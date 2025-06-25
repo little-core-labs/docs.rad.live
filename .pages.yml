@@ -41,12 +41,15 @@ content:
         label: Website URL
         type: string
         pattern: ^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$
-      - name: remote_theme
-        label: Theme
-        type: string
-        description: The theme to use for the site.
-        default: just-the-docs/just-the-docs
+      - name: favicon_ico
+        label: Favicon
+        type: image
+        description: Favicon used in the browser tab
+      - name: logo
+        label: Logo
+        type: image
+        description: Logo used in the header of the site
       - name: cover
-        label: Preview image
+        label: SEO preview
         type: image
         description: Image used in the preview on social networks
