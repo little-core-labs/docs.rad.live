@@ -20,19 +20,19 @@ content:
         label: Title
         type: string
         required: true
-      - name: order
-        label: Order
+      - name: nav_order
+        label: Menu Order
         type: number
       - name: body
         label: Body
         type: rich-text
     view:
-      fields: [ title, order ]
+      fields: [ title, nav_order ]
       primary: title
-      sort: [ order, title ]
+      sort: [ nav_order, title ]
       default:
         search: ''
-        sort: order
+        sort: nav_order
         order: asc
   # define the main site homepage
   - name: homepage
