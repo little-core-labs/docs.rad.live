@@ -1,6 +1,6 @@
 ---
 title: Technical Support
-order: 1
+nav-order: 2
 ---
 # Rad TV Technical Support
 
