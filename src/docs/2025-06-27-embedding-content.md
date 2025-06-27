@@ -1,6 +1,6 @@
 ---
 title: Embedding Content
-nav-order: 3
+nav_order: 3
 ---
 # How to Embed Rad TV Videos on Your Website or Blog
 
@@ -37,7 +37,6 @@ Copy the code below:
     allowfullscreen>
   </iframe>
 </div>
-
 ```
 
 ### Step 3: Replace the Placeholders
@@ -72,7 +71,6 @@ Here is what the complete, ready-to-paste code looks like after replacing the pl
     allowfullscreen>
   </iframe>
 </div>
-
 ```
 
 ## Questions?
