@@ -29,11 +29,6 @@ content:
     view:
       fields: [ title, nav_order ]
       primary: title
-      sort: [ nav_order, title ]
-      default:
-        search: ''
-        sort: nav_order
-        order: asc
   # define the main site homepage
   - name: homepage
     label: Homepage
