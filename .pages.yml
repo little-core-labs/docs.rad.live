@@ -26,9 +26,6 @@ content:
       - name: body
         label: Body
         type: rich-text
-    view:
-      fields: [ title, nav_order ]
-      primary: title
   # define the main site homepage
   - name: homepage
     label: Homepage
