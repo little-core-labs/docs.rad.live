@@ -1,6 +1,6 @@
 ---
 title: Partnerships for Businesses
-order: 2
+nav-order: 1
 ---
 # **Rad TV Partnerships for Businesses**
 
