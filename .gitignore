@@ -1,7 +1,7 @@
 # deps
 /node_modules
 
-# generated content
+# generated content (Fumadocs MDX cache)
 .source
 
 # test & build
@@ -10,6 +10,9 @@
 /out/
 /build
 *.tsbuildinfo
+
+# lint
+.eslintcache
 
 # misc
 .DS_Store
@@ -24,3 +27,4 @@ yarn-error.log*
 .env*.local
 .vercel
 next-env.d.ts
+.turbo

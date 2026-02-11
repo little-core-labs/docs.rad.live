@@ -1,7 +1,8 @@
 import { source } from '@/lib/source';
 import { createFromSource } from 'fumadocs-core/search/server';
 
-export const { GET } = createFromSource(source, {
-  // https://docs.orama.com/docs/orama-js/supported-languages
+// Static export: use staticGET so the search index is pre-rendered for GitHub Pages
+export const revalidate = false;
+export const { staticGET: GET } = createFromSource(source, {
   language: 'english',
 });

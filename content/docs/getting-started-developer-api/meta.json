@@ -1,0 +1,11 @@
+{
+  "title": "Getting Started - Developer API",
+  "pages": [
+    "index",
+    "authentication",
+    "graphql-basics",
+    "managing-content",
+    "managing-playlists",
+    "managing-channels"
+  ]
+}
