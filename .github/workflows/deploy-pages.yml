@@ -1,11 +1,9 @@
 # Deploy official docs to GitHub Pages on push to master.
 #
-# Now: uses default project URL https://little-core-labs.github.io/docs.rad.live
-#      (build uses basePath /docs.rad.live; artifact is out/docs.rad.live).
+# Now: default project URL https://little-core-labs.github.io/docs.rad.live
+#      (basePath /docs.rad.live only affects asset URLs; export is flat under out/).
 #
-# When you point DNS to docs.rad.live: in this workflow set BASE_PATH: ''
-# and change path to "out", then redeploy. That will serve at https://docs.rad.live
-# (the default GitHub URL will then need a redirect or can be retired).
+# When you point DNS to docs.rad.live: set BASE_PATH: '' in the build step, then redeploy.
 
 name: Deploy to GitHub Pages
 
@@ -42,14 +40,13 @@ jobs:
         run: npm run build
         env:
           # Default project URL (little-core-labs.github.io/docs.rad.live).
-          # When ready for https://docs.rad.live, set BASE_PATH: '' and path: out below.
+          # When ready for https://docs.rad.live, set BASE_PATH: ''.
           BASE_PATH: '/docs.rad.live'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # App lives in out/docs.rad.live/ so deployed root = app root for project URL.
-          path: out/docs.rad.live
+          path: out
 
   deploy:
     environment:
