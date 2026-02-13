@@ -68,7 +68,7 @@ Per [Remark Image](https://www.fumadocs.dev/docs/headless/mdx/remark-image):
 
 ## Content cleanup
 
-- Replace or strip GitBook-only syntax (`{% file %}`, etc.).
+- Replace or strip GitBook-only syntax (`{% raw %}{% file %}{% endraw %}`, etc.).
 - Normalize HTML `<figure>`/`<div>` for images; use standard Markdown image syntax where possible.
 - Ensure frontmatter (`title`, `description`) on every page per [Page conventions](https://www.fumadocs.dev/docs/page-conventions#file).
 - Fix internal links to use Fumadocs doc paths (no `.md`), e.g. `/docs/getting-started-developer-api/authentication`.
