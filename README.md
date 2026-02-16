@@ -7,11 +7,16 @@ Documentation site for **rad.live** (Rad TV), built with [Next.js](https://nextj
 
 ## Commands
 
-```bash
-npm run dev    # Start dev server (http://localhost:3000)
-npm run build  # Production build (with static export: outputs to out/)
-npm run lint   # ESLint
-```
+| Command | Description |
+|--------|-------------|
+| **`npm run dev`** | Start the dev server. Use **http://localhost:3000** for the landing page and **http://localhost:3000/docs** for the docs. No base path in dev. |
+| **`npm run build`** | Production build (static export to `out/`). Uses base path `/docs.rad.live` for GitHub Pages unless `BASE_PATH` is set. |
+| **`npm run preview`** | Build with empty base path and serve `out/` with `npx serve out`. Use this to test the static export locally; assets load correctly. |
+| **`npm run start`** | Runs `next start`. With static export, use **`npm run preview`** instead to test the exported site. |
+| **`npm run lint`** | ESLint. |
+| **`npm run types:check`** | Fumadocs MDX + Next typegen + TypeScript check. |
+
+**Local development:** Run `npm run dev`, then open http://localhost:3000 and http://localhost:3000/docs. To test the static export locally (e.g. before pushing), run **`npm run preview`** — it builds with root paths and serves `out/` so assets load correctly. Do not use `npx serve out` after a plain `npm run build`, or asset URLs will 404.
 
 ## Content
 
@@ -44,9 +49,10 @@ All of the above were migrated from the legacy GitBook documentation.
 
 This app supports **static export** for hosting on GitHub Pages or any static host.
 
-- Follow [Fumadocs Static Build](https://www.fumadocs.dev/docs/deploying/static): set `output: 'export'` in `next.config`, configure search for static mode.
-- GitHub Actions workflow: `.github/workflows/deploy-pages.yml` — on push to `main`, runs `npm run build` and deploys the `out/` directory to GitHub Pages.
-- In repo Settings → Pages, set Source to **GitHub Actions**.
+- **GitHub Actions:** `.github/workflows/deploy-pages.yml` runs on push to **`master`**. It sets `BASE_PATH='/docs.rad.live'`, runs `npm run build`, and deploys the `out/` directory to GitHub Pages. In repo **Settings → Pages**, set Source to **GitHub Actions**.
+- **Default URL:** The site is available at the project Pages URL (e.g. `https://<org>.github.io/docs.rad.live`). For a custom domain at the root (e.g. https://docs.rad.live), set `BASE_PATH: ''` in the workflow and redeploy.
+- **Local preview of production build:** Use **`npm run preview`** to build with no base path and serve `out/` so you can test the static export locally without 404s. Do not run `npx serve out` after a plain `npm run build`, or asset paths will not match.
+- See [Fumadocs Static Build](https://www.fumadocs.dev/docs/deploying/static) for search and static export configuration.
 
 ## Learn More
 

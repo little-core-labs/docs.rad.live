@@ -10,11 +10,13 @@ For migration details and Fumadocs alignment, see [GITBOOK_MIGRATION.md](GITBOOK
 
 ## Commands
 
-- `npm run dev` — Start dev server (localhost:3000)
-- `npm run build` — Production build
-- `npm run lint` — ESLint
-- `npm run types:check` — Runs `fumadocs-mdx`, `next typegen`, then `tsc --noEmit`
-- `npm run postinstall` — Runs `fumadocs-mdx` (auto-generates `.source/` directory)
+- **`npm run dev`** — Start the dev server. The app is served at the **root** (no base path), so use **http://localhost:3000** for the landing page and **http://localhost:3000/docs** for the docs. Hot reload works as usual.
+- **`npm run build`** — Production build (static export to `out/`). Uses `basePath: '/docs.rad.live'` unless `BASE_PATH` is set, so the output is correct for GitHub Pages deployment.
+- **`npm run preview`** — Build with **empty** basePath and serve the `out/` directory with `npx serve out`. Use this to test the static export locally (e.g. open the URL printed by serve). Assets load correctly because the build matches the served root.
+- **`npm run start`** — Runs `next start`; with `output: 'export'` the app is static, so prefer **`npm run preview`** to test the exported site locally.
+- **`npm run lint`** — ESLint
+- **`npm run types:check`** — Runs `fumadocs-mdx`, `next typegen`, then `tsc --noEmit`
+- **`npm run postinstall`** — Runs `fumadocs-mdx` (auto-generates `.source/` directory)
 
 ## Architecture
 
@@ -52,11 +54,14 @@ Docs live under `content/docs/` with sections mirroring the legacy structure: `g
 
 ### Assets and images
 
-Per [Fumadocs Remark Image](https://www.fumadocs.dev/docs/headless/mdx/remark-image): doc images live in the **public** directory (e.g. `public/images/`). Reference them in MDX with root-relative paths (e.g. `/images/filename.png`). Do not use source-specific folder names in asset paths.
+Per [Fumadocs Remark Image](https://www.fumadocs.dev/docs/headless/mdx/remark-image): doc images live in the **public** directory (e.g. `public/images/`). Reference them in MDX with root-relative paths (e.g. `/images/filename.png`). Do not use source-specific folder names in asset paths. A rehype plugin in `source.config.ts` (`rehypePrefixImageBasePath`) rewrites image `src` to include the base path in production so images load correctly on GitHub Pages (e.g. `/docs.rad.live/images/...`). In development, base path is empty so `/images/...` is used as-is.
 
-### GitHub Pages
+### GitHub Pages and base path
 
-When deploying to GitHub Pages: set `output: 'export'` in `next.config`; use `basePath` and `assetPrefix` for project pages (e.g. `/docs.rad.live`); set `images: { unoptimized: true }` unless using a custom loader. Configure search for static export per [Fumadocs Static Build](https://www.fumadocs.dev/docs/deploying/static). The `lib/layout.shared.tsx` `gitConfig` and nav title should point to the actual Rad TV repo and "Rad TV Docs" (or equivalent).
+- **Development:** `next.config.mjs` and `source.config.ts` use **no base path** when `NODE_ENV === 'development'`, so the app is at http://localhost:3000 and http://localhost:3000/docs.
+- **Production (CI):** The workflow `.github/workflows/deploy-pages.yml` sets `BASE_PATH='/docs.rad.live'` so the built site works at the default project URL (e.g. `https://little-core-labs.github.io/docs.rad.live`). Set `output: 'export'`, `images: { unoptimized: true }`, and configure search for static export per [Fumadocs Static Build](https://www.fumadocs.dev/docs/deploying/static). For a custom domain at the root (e.g. https://docs.rad.live), set `BASE_PATH: ''` in the workflow and redeploy.
+- **Local preview of static export:** Run **`npm run preview`** (builds with empty basePath and serves `out/`) so assets resolve correctly. Do not run `npx serve out` after a normal `npm run build`, or asset URLs will 404 because the build uses `/docs.rad.live` in paths.
+- The `lib/layout.shared.tsx` `gitConfig` and nav title should point to the actual Rad TV repo and "Rad TV Docs" (or equivalent).
 
 ### Fumadocs references
 

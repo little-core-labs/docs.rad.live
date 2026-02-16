@@ -2,9 +2,11 @@ import { createMDX } from 'fumadocs-mdx/next';
 
 const withMDX = createMDX();
 
-// GitHub project pages are served at /<repo-name>/ (e.g. radtv.github.io/docs.rad.live).
-// Set BASE_PATH env to '' only if you serve from root (e.g. custom domain at docs.rad.live).
-const basePath = process.env.BASE_PATH ?? '/docs.rad.live';
+// Development: no basePath so localhost:3000 and /docs work.
+// Production (CI): BASE_PATH=/docs.rad.live for GitHub Pages. Override with BASE_PATH for custom domain.
+const basePath =
+  process.env.BASE_PATH ??
+  (process.env.NODE_ENV === 'development' ? '' : '/docs.rad.live');
 const assetPrefix = basePath ? `${basePath}/` : undefined;
 
 /** @type {import('next').NextConfig} */

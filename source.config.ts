@@ -4,11 +4,14 @@ import { visit } from 'unist-util-visit';
 import type { Element } from 'hast';
 import type { Root } from 'hast';
 
-// Align with next.config basePath so /images/... in MDX becomes /docs.rad.live/images/... on GitHub Pages.
-const basePath = process.env.BASE_PATH ?? '/docs.rad.live';
+// Align with next.config: no prefix in dev, /docs.rad.live in production (or BASE_PATH override).
+const basePath =
+  process.env.BASE_PATH ??
+  (process.env.NODE_ENV === 'development' ? '' : '/docs.rad.live');
 
 function rehypePrefixImageBasePath(): (tree: Root) => void {
   return (tree) => {
+    if (!basePath) return; // dev: keep /images/... as-is
     visit(tree, 'element', (node: Element) => {
       if (node.tagName !== 'img') return;
       const src = node.properties?.src;
