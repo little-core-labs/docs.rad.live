@@ -41,8 +41,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Regenerate .source with BASE_PATH set so MDX image paths get the correct prefix.
+      - name: Regenerate Fumadocs source
+        run: npx fumadocs-mdx
+
       - name: Build
         run: npm run build
+
+      # So GitHub Pages does not use Jekyll (which ignores _next/ and files under leading dot).
+      - name: Add .nojekyll
+        run: touch out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
