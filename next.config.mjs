@@ -1,12 +1,9 @@
 import { createMDX } from 'fumadocs-mdx/next';
+import { basePath } from './lib/base-path.mjs';
 
 const withMDX = createMDX();
 
-// Development: no basePath so localhost:3000 and /docs work.
-// Production (CI): BASE_PATH=/docs.rad.live for GitHub Pages. Override with BASE_PATH for custom domain.
-const basePath =
-  process.env.BASE_PATH ??
-  (process.env.NODE_ENV === 'development' ? '' : '/docs.rad.live');
+// basePath from lib/base-path.js (shared with source.config.ts for image paths).
 const assetPrefix = basePath ? `${basePath}/` : undefined;
 
 /** @type {import('next').NextConfig} */

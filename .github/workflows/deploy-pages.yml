@@ -23,6 +23,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Required for image and asset paths on GitHub Pages. Must be set for the
+      # whole job so it's available during "Install dependencies" (fumadocs-mdx
+      # postinstall) and "Build" (next build). For custom domain use BASE_PATH: ''.
+      BASE_PATH: '/docs.rad.live'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,10 +43,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          # Default project URL (little-core-labs.github.io/docs.rad.live).
-          # When ready for https://docs.rad.live, set BASE_PATH: ''.
-          BASE_PATH: '/docs.rad.live'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

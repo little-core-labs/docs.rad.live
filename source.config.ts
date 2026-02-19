@@ -3,11 +3,7 @@ import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
 import { visit } from 'unist-util-visit';
 import type { Element } from 'hast';
 import type { Root } from 'hast';
-
-// Align with next.config: no prefix in dev, /docs.rad.live in production (or BASE_PATH override).
-const basePath =
-  process.env.BASE_PATH ??
-  (process.env.NODE_ENV === 'development' ? '' : '/docs.rad.live');
+import { basePath } from './lib/base-path.mjs';
 
 function rehypePrefixImageBasePath(): (tree: Root) => void {
   return (tree) => {
