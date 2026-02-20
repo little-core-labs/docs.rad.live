@@ -9,11 +9,10 @@ Follow [Fumadocs](https://www.fumadocs.dev) official docs for all content, build
 | Topic | URL | Use |
 |-------|-----|-----|
 | **Deploying** | https://www.fumadocs.dev/docs/deploying | Overview; framework-specific deployment (Next.js). |
-| **Static Build** | https://www.fumadocs.dev/docs/deploying/static | Static export for GitHub Pages; Next.js `output: 'export'`; search setup for static. |
 | **Page Slugs & Page Tree** | https://www.fumadocs.dev/docs/page-conventions | File/folder layout, slugs, `meta.json` for folder order and titles. |
 | **Navigation** | https://www.fumadocs.dev/docs/navigation | Layout links and sidebar (page tree). |
 | **Search** | https://www.fumadocs.dev/docs/search | Search implementation overview. |
-| **Orama (default)** | https://www.fumadocs.dev/docs/search/orama | Default search; static mode for static export: [Search Server (static)](https://www.fumadocs.dev/docs/headless/search/orama#static-export), [Search UI (static)](https://www.fumadocs.dev/docs/search/orama#static). |
+| **Orama (default)** | https://www.fumadocs.dev/docs/search/orama | Default search; server-side search used when deployed to Amplify. |
 | **Fumadocs MDX** | https://www.fumadocs.dev/docs/mdx | Content source, collections, `source.config.ts`, frontmatter/schema. |
 | **MDX Collections** | https://www.fumadocs.dev/docs/mdx/collections | `defineDocs`, `dir`, frontmatter schema. |
 | **Source API (headless)** | https://www.fumadocs.dev/docs/headless/source-api | `loader()`, page tree, baseUrl. |
@@ -22,11 +21,11 @@ Follow [Fumadocs](https://www.fumadocs.dev) official docs for all content, build
 
 ## Outline of the six areas
 
-1. **CLAUDE.md updates** — Migration note, content layout, Fumadocs/asset pointers, GitHub Pages notes.
+1. **CLAUDE.md updates** — Migration note, content layout, Fumadocs/asset pointers, deployment notes.
 2. **README.md updates** — Project purpose, live site link, content overview, deployment section.
 3. **This file (GITBOOK_MIGRATION.md)** — Central plan, doc map, asset strategy, deployment, future integration.
 4. **Doc transfer** — Copy content and assets; structure under `content/docs/`; frontmatter; image path replacement; meta.json; internal links.
-5. **GitHub Pages deployment** — Static export, search static setup, GitHub Actions workflow.
+5. **AWS Amplify deployment** — Next.js build (SSR/SSG); build spec in `amplify.yml`; no static export.
 6. **Future: Service docs integration** — Agentic/skills to bring in api.rad.live, embed.rad.live, web-rad, mediahq, ps5-rad, etc.
 
 ## Doc map (GitBook → content/docs)
@@ -75,10 +74,9 @@ Per [Remark Image](https://www.fumadocs.dev/docs/headless/mdx/remark-image):
 
 ## Deployment summary
 
-- Follow [Static Build](https://www.fumadocs.dev/docs/deploying/static): Next.js static export + search static setup.
-- Workflow: `.github/workflows/deploy-pages.yml` — build, upload `out/` artifact, deploy to GitHub Pages.
-- Repo Settings → Pages: Source = "GitHub Actions".
-- Site is served from the `out/` directory after `npm run build`.
+- The app is deployed to **AWS Amplify Hosting** as a standard Next.js app (SSR/SSG). Build spec is in **`amplify.yml`** at the repo root: `npm ci`, `npm run build`, artifacts from `.next`.
+- In the Amplify console, connect the repo and branch; set `BASE_PATH` to `''` (or leave unset) if the site is at the root (e.g. https://docs.rad.live).
+- No static export; the Next.js server runs on Amplify.
 
 ## Future: Service docs integration
 

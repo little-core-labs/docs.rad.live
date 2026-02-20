@@ -5,9 +5,10 @@ import type { Element } from 'hast';
 import type { Root } from 'hast';
 import { basePath } from './lib/base-path.mjs';
 
+// When basePath is set (e.g. Amplify subpath), prefix image src so they load correctly.
 function rehypePrefixImageBasePath(): (tree: Root) => void {
   return (tree) => {
-    if (!basePath) return; // dev: keep /images/... as-is
+    if (!basePath) return; // dev or root: keep /images/... as-is
     visit(tree, 'element', (node: Element) => {
       if (node.tagName !== 'img') return;
       const src = node.properties?.src;
