@@ -4,8 +4,8 @@ frontend:
     preBuild:
       commands:
         - npm ci
-        # Ensure Linux native binary for lightningcss (Tailwind/PostCSS) on CodeBuild
-        - npm install lightningcss-linux-x64-gnu@1.30.2 --no-save
+        # Ensure Linux native binaries for Tailwind CSS 4 on CodeBuild (optionalDeps often missing when lockfile is from another OS)
+        - npm install lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.18 --no-save
     build:
       commands:
         - npm run build
